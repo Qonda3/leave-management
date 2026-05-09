@@ -10,8 +10,15 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+
+    /**
+     * Register custom middleware aliases
+     * used for route authorization.
+     */
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'manager' => \App\Http\Middleware\IsManager::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
