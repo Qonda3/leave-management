@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -45,5 +46,27 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Relationships
+    public function leaveRequests()
+    {
+        return $this->hasMany(LeaveRequest::class);
+    }
+
+    public function leaveBalances()
+    {
+        return $this->hasMany(LeaveBalance::class);
+    }
+
+    // Helper methods
+    public function isManager(): bool
+    {
+        return $this->role === 'manager';
+    }
+
+    public function isEmployee(): bool
+    {
+        return $this->role === 'employee';
     }
 }
