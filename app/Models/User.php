@@ -48,23 +48,33 @@ class User extends Authenticatable
         ];
     }
 
-    // Relationships
+    /**
+     * Get the leave requests submitted by the user.
+     */
     public function leaveRequests()
     {
         return $this->hasMany(LeaveRequest::class);
     }
 
+    /**
+     * Get the leave balances associates with the user.
+     */
     public function leaveBalances()
     {
         return $this->hasMany(LeaveBalance::class);
     }
 
-    // Helper methods
+    /**
+     * Determine if the user has a manager role.
+     */
     public function isManager(): bool
     {
         return $this->role === 'manager';
     }
 
+    /**
+     * Determine if the user has an employee role.
+     */
     public function isEmployee(): bool
     {
         return $this->role === 'employee';
