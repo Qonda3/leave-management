@@ -32,9 +32,20 @@ class UserSeeder extends Seeder
             ]
         );
 
+        $employee2 = User::firstOrCreate(
+            ['email' => 'jane@leaveapp.test'],
+            [
+                'name'     => 'Melo Employee',
+                'email'    => 'melo@leaveapp.test',
+                'password' => Hash::make('password'),
+                'role'     => 'employee',
+            ]
+        );
+
 
         $this->assignLeaveBalances($manager);
         $this->assignLeaveBalances($employee1);
+        $this->assignLeaveBalances($employee2)
 
     }
 
