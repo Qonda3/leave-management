@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
 
         $this->assignLeaveBalances($manager);
         $this->assignLeaveBalances($employee1);
-        $this->assignLeaveBalances($employee2)
+        $this->assignLeaveBalances($employee2);
 
     }
 
