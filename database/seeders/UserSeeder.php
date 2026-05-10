@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             [
                 'name'      => 'Siya Manager',
                 'email'     => 'manager@leaveapp.test',
-                'passwaord' => Hash::make(password),
+                'password'  => Hash::make('password'),
                 'role'      => 'manager',
             ]
         );
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
 
     }
 
-    private function assignLeaveBalnces(User $user): void
+    private function assignLeaveBalances(User $user): void
     {
         $leaveTypes = LeaveType::all();
 
