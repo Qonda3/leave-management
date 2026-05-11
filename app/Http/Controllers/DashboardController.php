@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
 
+    /**
+     * Display the appropriate dashboard
+     * based on the authenticated user's role.
+     */
     public function index(Request $request)
     {
         $user = $request->user();
@@ -47,6 +51,11 @@ class DashboardController extends Controller
 
     }
 
+    /**
+     * Display the manager dashboard with
+     * pending leave request and
+     * approval statistics
+     */
     private function managerDashboard()
     {
         $peningRequests = LeaveRequest::with(['user', 'leaveType'])
