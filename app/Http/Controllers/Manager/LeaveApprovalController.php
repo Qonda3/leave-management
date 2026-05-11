@@ -18,6 +18,11 @@ class LeaveApprovalController extends Controller
         return view('manager.approvals', compact('pendingRequests'));
     }
 
+    public function approve(Request $request, LeaveRequest $leaveRequest)
+    {
+        return back()->with('success', 'Leave approved');
+    }
+
     public function decline(Request $request, LeaveRequest $leaveRequest)
     {
         return back()->with('success', 'Leave declined.');
