@@ -29,6 +29,39 @@
                         <a href="{{ route('dashboard') }}">
                             Dashboard
                         </a>
+
+                        @if(auth()->user()->isEmployee())
+
+                            <a href="{{ route('leaves.index') }}">
+                                My Leaves
+                            </a>
+
+                        @endif
+
+                        @if(auth()->user()->isManager())
+
+                            <a href="{{ route('manager.approvals') }}">
+                                Approvals
+                            </a>
+
+                        @endif
+
+                    </div>
+
+                    <div class="flex items-center gap-4">
+
+                        <div>
+                            {{ auth()->user()->name }}
+                        </div>
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <button type="submit">
+                                Logout
+                            </button>
+                        </form>
+
                     </div>
 
                 </div>
