@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    
+
     public function index(Request $request)
     {
         $user = $request->user();
@@ -41,5 +41,24 @@ class DashboardController extends Controller
             'pendingCount'
         ));
 
+    }
+
+    private function managerDashboard()
+    {
+        $peningRequests = LeaveRequest::with(['user', 'leaveType'])
+            ->where('status', 'pending')
+            ->latest()
+            ->get();
+
+        $totalPending = $pendingRequests->count();
+        $totalApproved = LeaveRequest::where('status', 'approved')->count();
+        $totalDeclined = LeaveRequest::where('status', 'declined')->count();
+
+        return view('dashboard.manager', compact(
+            'pendingRequests',
+            'totalPending',
+            'totalApproved',
+            'totalDeclined'
+        ));
     }
 }
