@@ -10,12 +10,19 @@
     </head>
     <body class="bg-gray-50 font-sans antialiased">
 
-        <nav class="bg-white border-b shadow-sm">
+        <nav class="bg-white border-b border-gray-200 shadow-sm">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="flex justify-between h-16 items-center">
 
-                    <div>
-                        LeaveApp
+                    <div class="flex items-center gap-3">
+
+                        <div class="w-8 h-8 bg-indigo-600 rounded-lg">
+                        </div>
+
+                        <span class="text-lg font-bold">
+                            LeaveApp
+                        </span>
+
                     </div>
 
                     <div>
