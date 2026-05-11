@@ -34,6 +34,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/{leaveRequest}', [LeaveRequestController::class, 'show'])->name('show');
     });
 
+    /**
+     * Manager-only routes for reviewing
+     * and processing employee leave requests.
+     */
     Route::middleware(['manager'])->prefix(manager)->name('manager.')->group(function () {
         Route::get('/approval', [LeaveApprovalContoller::class, 'index'])->name('approvals');
         Route::patch('/{leaveRequest}/approve', [LeaveApprovalController::class, 'approve'])->name('approve');
