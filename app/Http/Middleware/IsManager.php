@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsManager extends Middleware
+class IsManager
 {
     /**
      * Handle an incoming request.
