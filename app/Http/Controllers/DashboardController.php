@@ -13,6 +13,10 @@ class DashboardController extends Controller
     {
         $user = $request->user();
 
+        if ($user->isManager()) {
+            return $this->managerDashboard();
+        }
+
         return $this->employeeDashboard($user);
     }
 
