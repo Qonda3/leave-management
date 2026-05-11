@@ -38,10 +38,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
      * Manager-only routes for reviewing
      * and processing employee leave requests.
      */
-    Route::middleware(['manager'])->prefix(manager)->name('manager.')->group(function () {
-        Route::get('/approval', [LeaveApprovalContoller::class, 'index'])->name('approvals');
+    Route::middleware(['manager'])->prefix('manager')->name('manager.')->group(function () {
+        Route::get('/approvals', [LeaveApprovalController::class, 'index'])->name('approvals');
         Route::patch('/{leaveRequest}/approve', [LeaveApprovalController::class, 'approve'])->name('approve');
-        Route::patch('/{leaveRequest}/decline', [LeaveApprovalController::class, 'decline'])->name('dcline');
+        Route::patch('/{leaveRequest}/decline', [LeaveApprovalController::class, 'decline'])->name('decline');
     });
 
 });
