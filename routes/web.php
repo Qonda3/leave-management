@@ -34,6 +34,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/{leaveRequest}', [LeaveRequestController::class, 'show'])->name('show');
     });
 
+    Route::middleware(['manager'])->prefix(manager)->name('manager.')->group(function () {
+        Route::get('/approval', [LeaveApprovalContoller::class, 'index'])->name('approvals');
+        Route::patch('/{leaveRequest}/approve', [LeaveApprovalController::class, 'approve'])->name('approve');
+        Route::patch('/{leaveRequest}/decline', [LeaveApprovalController::class, 'decline'])->name('dcline');
+    });
+
 });
 
 require __DIR__.'/auth.php';
