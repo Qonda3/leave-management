@@ -48,29 +48,37 @@
 
     @forelse($pendingRequests as $request)
 
-        <div class="p-4 flex justify-between">
+    <div class="p-4 flex justify-between">
 
-            <div>
+        <div>
 
-                <p>
-                    {{ $request->user->name }}
-                </p>
+            <p>
+                {{ $request->user->name }}
+            </p>
 
-                <p class="text-sm text-gray-500">
-                    {{ $request->leaveType->name }}
-                </p>
+            <p class="text-sm text-gray-500">
 
-            </div>
+                {{ $request->leaveType->name }}
+
+                ·
+
+                {{ $request->start_date->format('d M Y') }}
+
+                -
+
+                {{ $request->end_date->format('d M Y') }}
+
+                ·
+
+                {{ $request->days_requested }} days
+
+            </p>
 
         </div>
 
-    @empty
+    </div>
 
-        <p class="p-4 text-gray-500">
-            No pending requests.
-        </p>
-
-    @endforelse
+@endforelse
 
 </div>
 
