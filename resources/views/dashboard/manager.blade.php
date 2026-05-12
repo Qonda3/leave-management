@@ -75,6 +75,34 @@
             </p>
 
         </div>
+        <div class="flex gap-2">
+
+            <form method="POST"
+                action="{{ route('manager.approve', $request) }}">
+
+                @csrf
+                @method('PATCH')
+
+                <button>
+                    Approve
+                </button>
+
+            </form>
+
+
+            <form method="POST"
+                action="{{ route('manager.decline', $request) }}">
+
+                @csrf
+                @method('PATCH')
+
+                <button>
+                    Decline
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
