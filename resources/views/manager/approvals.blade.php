@@ -46,6 +46,17 @@
 
                 </p>
 
+
+                @if($request->reason)
+
+                    <p class="text-sm italic text-gray-500 mt-1">
+
+                        "{{ $request->reason }}"
+
+                    </p>
+
+                @endif
+
             </div>
 
 
