@@ -19,30 +19,64 @@
 
     @forelse($pendingRequests as $request)
 
-        <div class="p-4 border-b">
+        <div class="p-4 flex justify-between border-b">
 
-            <p class="font-medium">
-                {{ $request->user->name }}
-            </p>
+            <div>
+
+                <p class="font-medium">
+                    {{ $request->user->name }}
+                </p>
 
 
-            <p class="text-sm text-gray-500">
+                <p class="text-sm text-gray-500">
 
-                {{ $request->leaveType->name }}
+                    {{ $request->leaveType->name }}
 
-                ·
+                    ·
 
-                {{ $request->start_date->format('d M Y') }}
+                    {{ $request->start_date->format('d M Y') }}
 
-                -
+                    -
 
-                {{ $request->end_date->format('d M Y') }}
+                    {{ $request->end_date->format('d M Y') }}
 
-                ·
+                    ·
 
-                {{ $request->days_requested }} days
+                    {{ $request->days_requested }} days
 
-            </p>
+                </p>
+
+            </div>
+
+
+            <div class="flex gap-2">
+
+                <form method="POST"
+                      action="{{ route('manager.approve', $request) }}">
+
+                    @csrf
+                    @method('PATCH')
+
+                    <button>
+                        Approve
+                    </button>
+
+                </form>
+
+
+                <form method="POST"
+                      action="{{ route('manager.decline', $request) }}">
+
+                    @csrf
+                    @method('PATCH')
+
+                    <button>
+                        Decline
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
 
