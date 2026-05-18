@@ -4,31 +4,31 @@
 
 @section('content')
 
-<div class="mb-6">
-    <h1 class="text-2xl font-bold">
+<div class="mb-8">
+    <h1 class="text-2xl font-bold text-gray-900">
         Leave Approvals
     </h1>
 
-    <p class="text-gray-500">
-        Review employee leave requests.
+    <p class="text-gray-500 mt-1">
+        All pending employee leave requests.
     </p>
 </div>
 
 
-<div class="bg-white border rounded">
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm">
 
     @forelse($pendingRequests as $request)
 
-        <div class="p-4 flex justify-between border-b">
+        <div class="px-6 py-4 flex items-center justify-between border-b border-gray-50 last:border-0">
 
             <div>
 
-                <p class="font-medium">
+                <p class="text-sm font-medium text-gray-900">
                     {{ $request->user->name }}
                 </p>
 
 
-                <p class="text-sm text-gray-500">
+                <p class="text-xs text-gray-400 mt-0.5">
 
                     {{ $request->leaveType->name }}
 
@@ -36,7 +36,7 @@
 
                     {{ $request->start_date->format('d M Y') }}
 
-                    -
+                    —
 
                     {{ $request->end_date->format('d M Y') }}
 
@@ -49,7 +49,7 @@
 
                 @if($request->reason)
 
-                    <p class="text-sm italic text-gray-500 mt-1">
+                    <p class="text-xs text-gray-500 mt-1 italic">
 
                         "{{ $request->reason }}"
 
@@ -60,7 +60,7 @@
             </div>
 
 
-            <div class="flex gap-2">
+            <div class="flex items-center gap-2">
 
                 <form method="POST"
                       action="{{ route('manager.approve', $request) }}">
@@ -68,7 +68,7 @@
                     @csrf
                     @method('PATCH')
 
-                    <button>
+                    <button class="text-xs bg-green-600 text-white px-3 py-1.5 rounded-lg hover:bg-green-700 transition-colors font-medium">
                         Approve
                     </button>
 
@@ -81,7 +81,7 @@
                     @csrf
                     @method('PATCH')
 
-                    <button>
+                    <button class="text-xs bg-red-500 text-white px-3 py-1.5 rounded-lg hover:bg-red-600 transition-colors font-medium">
                         Decline
                     </button>
 
@@ -93,8 +93,12 @@
 
     @empty
 
-        <div class="p-4">
-            <p>No pending requests.</p>
+        <div class="px-6 py-8 text-center">
+
+            <p class="text-sm text-gray-400">
+                No pending requests. All caught up ✅
+            </p>
+
         </div>
 
     @endforelse
