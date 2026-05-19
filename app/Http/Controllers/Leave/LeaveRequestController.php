@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Leave;
 
 use App\Http\Controllers\Controller;
+use App\Models\LeaveRequest;
+use App\Models\LeaveType;
 use Illuminate\Http\Request;
 
 class LeaveRequestController extends Controller
