@@ -14,7 +14,7 @@ class LeaveRequestController extends Controller
      */
     public function index()
     {
-        //
+        return view('leaves.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class LeaveRequestController extends Controller
      */
     public function create()
     {
-        //
+        return view('leaves.create');
     }
 
     /**
