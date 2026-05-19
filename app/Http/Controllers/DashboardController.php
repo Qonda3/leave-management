@@ -58,7 +58,7 @@ class DashboardController extends Controller
      */
     private function managerDashboard()
     {
-        $peningRequests = LeaveRequest::with(['user', 'leaveType'])
+        $pendingRequests = LeaveRequest::with(['user', 'leaveType'])
             ->where('status', 'pending')
             ->latest()
             ->get();
