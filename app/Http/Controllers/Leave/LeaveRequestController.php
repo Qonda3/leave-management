@@ -56,7 +56,11 @@ class LeaveRequestController extends Controller
             ->where('leave_type_id', $validated['leave_type_id'])
             ->first();
 
-        if (!$balance || $balance->remaining_days < $daysRequested)
+        if (!$balance || $balance->remaining_days < $daysRequested){
+            $overlap = $user->leaveRequests()
+                ->where('status', '!=', 'declined');
+        }
+
     }
 
     /**
