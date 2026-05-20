@@ -57,9 +57,10 @@ class LeaveRequestController extends Controller
             ->first();
 
         if (!$balance || $balance->remaining_days < $daysRequested){
-            $overlap = $user->leaveRequests()
-                ->where('status', '!=', 'declined');
         }
+
+        $overlap = $user->leaveRequests()
+            ->where('status', '!=', 'declined');
 
         LeaveRequest::create([
             'user_id'       => $user->id,
