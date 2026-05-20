@@ -42,7 +42,12 @@ class LeaveRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'leave_type_id' => ['required', 'exists:leave_types,id'],
+            'start_date'    => ['required', 'date'],
+            'end_date'      => ['required', 'date'],
+            'reason'        => ['required'],
+        ]);
     }
 
     /**
