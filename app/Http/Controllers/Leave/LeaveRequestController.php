@@ -28,7 +28,9 @@ class LeaveRequestController extends Controller
      */
     public function create()
     {
-        return view('leaves.create');
+        $leaveTypes = LeaveType::all();
+
+        return view('leaves.create', compact('leaveTypes'));
     }
 
     /**
