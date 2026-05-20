@@ -103,6 +103,8 @@ class LeaveRequestController extends Controller
         if ($leaveRequest->user_id !== auth()->id()) {
             abort(403, 'You are not allowed to view this request.');
         }
+
+        return view('leaves.show', compact('leaveRequest'));
     }
 
     /**
