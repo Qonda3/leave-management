@@ -43,9 +43,10 @@ class LeaveRequestController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'start_date' => ['required', 'date', 'after_or_equal:today'],
-            'end_date'   => ['required', 'date', 'after_or_equal:start_date'],
-            'reason'     => ['required', 'string', 'min:10'],
+            'leave_type_id' => ['required', 'exists:leave_types,id'],
+            'start_date'    => ['required', 'date', 'after_or_equal:today'],
+            'end_date'      => ['required', 'date', 'after_or_equal:start_date'],
+            'reason'        => ['required', 'string', 'min:10'],
         ]);
 
         $startDate     = \Carbon\Carbon::parse($validated['start_date']);
