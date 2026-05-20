@@ -71,6 +71,10 @@ class LeaveRequestController extends Controller
             'status'        => 'pending',
         ]);
 
+        return redirect()
+            ->route('leaves.index')
+            ->with('success', 'Leave request submitted successfully.');
+
     }
 
     /**
