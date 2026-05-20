@@ -16,6 +16,7 @@ class LeaveRequestController extends Controller
     {
         $leaveRequests = auth()->user()
             ->leaveRequests()
+            ->with('leaveType')
             ->latest()
             ->get();
 
