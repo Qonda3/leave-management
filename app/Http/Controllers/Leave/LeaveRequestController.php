@@ -73,6 +73,12 @@ class LeaveRequestController extends Controller
             })
             ->exists();
 
+        if ($overlap) {
+            return back()
+                ->withInput()
+                ->with('error', 'You already have a leave request for these dates.');
+        }
+
         LeaveRequest::create([
             'user_id'       => $user->id,
             'leave_type_id' => $validated['leave_type_id'],
