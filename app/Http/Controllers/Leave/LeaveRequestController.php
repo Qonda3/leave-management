@@ -29,8 +29,12 @@ class LeaveRequestController extends Controller
     public function create()
     {
         $leaveTypes = LeaveType::all();
+        $leaveBalances = auth()->user()
+            ->leaveBalances()
+            ->with('leaveType')
+            ->get();
 
-        return view('leaves.create', compact('leaveTypes'));
+        return view('leaves.create', compact('leaveTypes', 'leaveBalances'));
     }
 
     /**
