@@ -61,6 +61,16 @@ class LeaveRequestController extends Controller
                 ->where('status', '!=', 'declined');
         }
 
+        LeaveRequest::create([
+            'user_id'       => $user->id,
+            'leave_type_id' => $validated['leave_type_id'],
+            'start_date'    => $validated['start_date'],
+            'end_date'      => $validated['end_date'],
+            'days_requested'=> $daysRequested,
+            'reason'        => $validated['reason'],
+            'status'        => 'pending',
+        ]);
+
     }
 
     /**
