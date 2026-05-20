@@ -52,6 +52,11 @@ class LeaveRequestController extends Controller
         $endDate       = \Carbon\Carbon::parse($validated['end_date']);
         $daysRequested = $startDate->diffInDays($endDate) + 1;
 
+        $balance = $user->leaveBalances()
+            ->where('leave_type_id', $validated['leave_type_id'])
+            ->first();
+
+        if (!$balance || $balance->remaining_days < $daysRequested)
     }
 
     /**
