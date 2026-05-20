@@ -61,7 +61,8 @@ class LeaveRequestController extends Controller
 
         if (!$balance || $balance->remaining_days < $daysRequested){
             return back()
-                ->with('error', 'You do not have enough leave balance.');
+                ->withInput()
+                ->with('error', 'You do not have enough leave balance for this request.');
         }
 
         $overlap = $user->leaveRequests()
