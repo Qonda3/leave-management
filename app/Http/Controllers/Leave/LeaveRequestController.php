@@ -49,6 +49,8 @@ class LeaveRequestController extends Controller
             'reason'        => ['required', 'string', 'min:10'],
         ]);
 
+        $user = auth()->user();
+
         $startDate     = \Carbon\Carbon::parse($validated['start_date']);
         $endDate       = \Carbon\Carbon::parse($validated['end_date']);
         $daysRequested = $startDate->diffInDays($endDate) + 1;
