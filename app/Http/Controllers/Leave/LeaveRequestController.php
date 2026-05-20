@@ -14,7 +14,12 @@ class LeaveRequestController extends Controller
      */
     public function index()
     {
-        return view('leaves.index');
+        $leaveRequests = auth()->user()
+            ->leaveRequests()
+            ->latest()
+            ->get();
+
+        return view('leaves.index', compact('leaveRequests'));
     }
 
     /**
