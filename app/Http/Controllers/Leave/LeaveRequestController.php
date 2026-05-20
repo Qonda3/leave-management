@@ -66,7 +66,12 @@ class LeaveRequestController extends Controller
         }
 
         $overlap = $user->leaveRequests()
-            ->where('status', '!=', 'declined');
+            ->where('status', '!=', 'declined')
+            ->where(function ($query) use ($validated) {
+                $query->whereBetween('start_date', [$validated['start_date'], $validated['end_date']])
+                      ->orWhereBetween('end_date', [$validated['start_date'], $validated['end_date']]);
+            })
+            ->exists();
 
         LeaveRequest::create([
             'user_id'       => $user->id,
