@@ -50,7 +50,10 @@
 
             <div class="flex items-center gap-3">
 
-                <span>
+                <span class="text-xs font-semibold px-3 py-1 rounded-full
+                    {{ $request->status === 'approved' ? 'bg-green-100 text-green-700' : '' }}
+                    {{ $request->status === 'pending'  ? 'bg-yellow-100 text-yellow-700' : '' }}
+                    {{ $request->status === 'declined' ? 'bg-red-100 text-red-700' : '' }}">
                     {{ ucfirst($request->status) }}
                 </span>
 
