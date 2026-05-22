@@ -10,10 +10,6 @@
         My Leave Requests
     </h1>
 
-    <p class="text-gray-500">
-        Track your leave applications.
-    </p>
-
 </div>
 
 
@@ -23,8 +19,23 @@
 
         <div class="p-4 border-b">
 
-            <p>
+            <p class="font-medium">
                 {{ $request->leaveType->name }}
+            </p>
+
+
+            <p class="text-sm text-gray-500">
+
+                {{ $request->start_date->format('d M Y') }}
+
+                -
+
+                {{ $request->end_date->format('d M Y') }}
+
+                ·
+
+                {{ $request->days_requested }} days
+
             </p>
 
         </div>
