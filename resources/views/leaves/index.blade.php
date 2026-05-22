@@ -10,6 +10,10 @@
         My Leave Requests
     </h1>
 
+    <a href="{{ route('leaves.create') }}">
+        Apply for Leave
+    </a>
+
 </div>
 
 
