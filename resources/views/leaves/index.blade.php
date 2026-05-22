@@ -42,10 +42,17 @@
 
             </div>
 
+            <div class="flex items-center gap-3">
 
-            <span>
-                {{ ucfirst($request->status) }}
-            </span>
+                <span>
+                    {{ ucfirst($request->status) }}
+                </span>
+
+                <a href="{{ route('leaves.show', $request) }}">
+                    View
+                </a>
+                
+            </div>
 
         </div>
 
