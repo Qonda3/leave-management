@@ -4,17 +4,19 @@
 
 @section('content')
 
-<div class="mb-6">
+@empty
 
-    <h1 class="text-2xl font-bold">
-        My Leave Requests
-    </h1>
+    <div class="p-8 text-center">
 
-    <a href="{{ route('leaves.create') }}">
-        Apply for Leave
-    </a>
+        <p>No leave requests yet.</p>
 
-</div>
+        <a href="{{ route('leaves.create') }}">
+            Apply for your first leave
+        </a>
+
+    </div>
+
+@endforelse
 
 
 <div class="bg-white border rounded">
