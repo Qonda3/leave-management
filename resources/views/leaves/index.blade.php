@@ -25,6 +25,12 @@
 
         <div class="p-4 flex justify-between border-b">
 
+            <div class="w-2 h-2 rounded-full flex-shrink-0
+                {{ $request->status === 'approved' ? 'bg-green-500' : '' }}
+                {{ $request->status === 'pending'  ? 'bg-yellow-400' : '' }}
+                {{ $request->status === 'declined' ? 'bg-red-500' : '' }}">
+            </div>
+
             <div>
 
                 <p class="font-medium">
