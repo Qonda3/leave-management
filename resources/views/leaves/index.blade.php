@@ -17,26 +17,35 @@
 
     @forelse($leaveRequests as $request)
 
-        <div class="p-4 border-b">
+        <div class="p-4 flex justify-between border-b">
 
-            <p class="font-medium">
-                {{ $request->leaveType->name }}
-            </p>
+            <div>
+
+                <p class="font-medium">
+                    {{ $request->leaveType->name }}
+                </p>
 
 
-            <p class="text-sm text-gray-500">
+                <p class="text-sm text-gray-500">
 
-                {{ $request->start_date->format('d M Y') }}
+                    {{ $request->start_date->format('d M Y') }}
 
-                -
+                    -
 
-                {{ $request->end_date->format('d M Y') }}
+                    {{ $request->end_date->format('d M Y') }}
 
-                ·
+                    ·
 
-                {{ $request->days_requested }} days
+                    {{ $request->days_requested }} days
 
-            </p>
+                </p>
+
+            </div>
+
+
+            <span>
+                {{ ucfirst($request->status) }}
+            </span>
 
         </div>
 
