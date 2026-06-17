@@ -1,18 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-xl mx-auto">
+<div class="max-w-xl mx-auto space-y-6">
 
-    <h1 class="text-xl font-bold mb-4">Apply for Leave</h1>
+    <h1 class="text-2xl font-bold text-gray-900">Apply for Leave</h1>
 
-    <form method="POST" action="{{ route('leaves.store') }}">
+    <form method="POST" action="{{ route('leaves.store') }}"
+          class="bg-white p-6 rounded-xl border space-y-5">
         @csrf
 
         {{-- Leave Type --}}
         <div>
-            <label>Leave Type</label>
-            <select name="leave_type_id">
+            <label class="block text-sm font-medium mb-1">Leave Type</label>
+
+            <select name="leave_type_id"
+                class="w-full border rounded-lg px-3 py-2">
+
                 <option value="">Select</option>
+
                 @foreach($leaveTypes as $type)
                     <option value="{{ $type->id }}"
                         {{ old('leave_type_id') == $type->id ? 'selected' : '' }}>
@@ -22,49 +27,52 @@
             </select>
 
             @error('leave_type_id')
-                <p style="color:red">{{ $message }}</p>
+                <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
         </div>
-
-        <br>
 
         {{-- Dates --}}
-        <div>
-            <label>Start Date</label>
-            <input type="date" name="start_date" value="{{ old('start_date') }}">
+        <div class="grid grid-cols-2 gap-4">
 
-            @error('start_date')
-                <p style="color:red">{{ $message }}</p>
-            @enderror
+            <div>
+                <label class="block text-sm mb-1">Start</label>
+                <input type="date" name="start_date"
+                       value="{{ old('start_date') }}"
+                       class="w-full border rounded-lg px-3 py-2">
+
+                @error('start_date')
+                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label class="block text-sm mb-1">End</label>
+                <input type="date" name="end_date"
+                       value="{{ old('end_date') }}"
+                       class="w-full border rounded-lg px-3 py-2">
+
+                @error('end_date')
+                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
         </div>
-
-        <br>
-
-        <div>
-            <label>End Date</label>
-            <input type="date" name="end_date" value="{{ old('end_date') }}">
-
-            @error('end_date')
-                <p style="color:red">{{ $message }}</p>
-            @enderror
-        </div>
-
-        <br>
 
         {{-- Reason --}}
         <div>
-            <label>Reason</label>
-            <textarea name="reason">{{ old('reason') }}</textarea>
+            <label class="block text-sm mb-1">Reason</label>
+            <textarea name="reason"
+                      class="w-full border rounded-lg px-3 py-2"
+                      rows="4">{{ old('reason') }}</textarea>
 
             @error('reason')
-                <p style="color:red">{{ $message }}</p>
+                <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
         </div>
 
-        <br>
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg">
+            Submit
+        </button>
 
-        <button type="submit">Submit</button>
     </form>
-
 </div>
 @endsection
