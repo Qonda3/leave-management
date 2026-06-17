@@ -3,35 +3,64 @@
 @section('content')
 <div class="max-w-xl mx-auto">
 
-    <h1>Apply for Leave</h1>
+    <h1 class="text-xl font-bold mb-4">Apply for Leave</h1>
 
     <form method="POST" action="{{ route('leaves.store') }}">
         @csrf
 
-        <label>Leave Type</label>
-        <select name="leave_type_id">
-            <option value="">Select</option>
-            @foreach($leaveTypes as $type)
-                <option value="{{ $type->id }}">{{ $type->name }}</option>
-            @endforeach
-        </select>
+        {{-- Leave Type --}}
+        <div>
+            <label>Leave Type</label>
+            <select name="leave_type_id">
+                <option value="">Select</option>
+                @foreach($leaveTypes as $type)
+                    <option value="{{ $type->id }}">
+                        {{ $type->name }}
+                    </option>
+                @endforeach
+            </select>
 
-        <br><br>
+            @error('leave_type_id')
+                <p style="color:red">{{ $message }}</p>
+            @enderror
+        </div>
 
-        <label>Start Date</label>
-        <input type="date" name="start_date">
+        <br>
 
-        <br><br>
+        {{-- Dates --}}
+        <div>
+            <label>Start Date</label>
+            <input type="date" name="start_date">
 
-        <label>End Date</label>
-        <input type="date" name="end_date">
+            @error('start_date')
+                <p style="color:red">{{ $message }}</p>
+            @enderror
+        </div>
 
-        <br><br>
+        <br>
 
-        <label>Reason</label>
-        <textarea name="reason"></textarea>
+        <div>
+            <label>End Date</label>
+            <input type="date" name="end_date">
 
-        <br><br>
+            @error('end_date')
+                <p style="color:red">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <br>
+
+        {{-- Reason --}}
+        <div>
+            <label>Reason</label>
+            <textarea name="reason"></textarea>
+
+            @error('reason')
+                <p style="color:red">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <br>
 
         <button type="submit">Submit</button>
     </form>
