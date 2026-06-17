@@ -14,7 +14,8 @@
             <select name="leave_type_id">
                 <option value="">Select</option>
                 @foreach($leaveTypes as $type)
-                    <option value="{{ $type->id }}">
+                    <option value="{{ $type->id }}"
+                        {{ old('leave_type_id') == $type->id ? 'selected' : '' }}>
                         {{ $type->name }}
                     </option>
                 @endforeach
@@ -30,7 +31,7 @@
         {{-- Dates --}}
         <div>
             <label>Start Date</label>
-            <input type="date" name="start_date">
+            <input type="date" name="start_date" value="{{ old('start_date') }}">
 
             @error('start_date')
                 <p style="color:red">{{ $message }}</p>
@@ -41,7 +42,7 @@
 
         <div>
             <label>End Date</label>
-            <input type="date" name="end_date">
+            <input type="date" name="end_date" value="{{ old('end_date') }}">
 
             @error('end_date')
                 <p style="color:red">{{ $message }}</p>
@@ -53,7 +54,7 @@
         {{-- Reason --}}
         <div>
             <label>Reason</label>
-            <textarea name="reason"></textarea>
+            <textarea name="reason">{{ old('reason') }}</textarea>
 
             @error('reason')
                 <p style="color:red">{{ $message }}</p>
